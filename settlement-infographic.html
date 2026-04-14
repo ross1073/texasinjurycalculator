@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Texas Car Accident Settlement Calculator — How It Works [Infographic]</title>
+<meta name="description" content="Free infographic: How Texas personal injury settlements are calculated. The multiplier method, 51% fault rule, and net recovery formula explained visually.">
+<meta property="og:title" content="Texas Car Accident Settlement Calculator — How It Works [Infographic]">
+<meta property="og:description" content="Free infographic: How Texas personal injury settlements are calculated. The multiplier method, 51% fault rule, and net recovery formula explained visually.">
+<meta property="og:image" content="https://texasinjurycalculator.com/settlement-infographic.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://texasinjurycalculator.com/settlement-infographic">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://texasinjurycalculator.com/settlement-infographic">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0F1F3D;
+  --navy-light: #162B52;
+  --navy-mid: #1A3461;
+  --white: #FFFFFF;
+  --off-white: #F8F9FC;
+  --gray-400: #9BA3B5;
+  --gray-500: #6B7489;
+  --gray-600: #4A5268;
+  --amber: #F59E0B;
+  --amber-light: #FCD34D;
+  --amber-dark: #D97706;
+  --red: #EF4444;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gray-600);
+  background: var(--navy);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  color: var(--gray-400);
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.infographic-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+.infographic-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Share & Embed Section */
+.share-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--navy-light);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+
+.share-btn:hover {
+  background: var(--navy-mid);
+  border-color: var(--amber);
+}
+
+.share-btn svg { width: 18px; height: 18px; fill: var(--amber); }
+
+.embed-section {
+  background: var(--navy-light);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.embed-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.embed-section p {
+  color: var(--gray-400);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.embed-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--amber-dark);
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.embed-textarea:focus {
+  outline: none;
+  border-color: var(--amber);
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--amber);
+  color: var(--navy);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copy-btn:hover { background: var(--amber-light); }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--navy-light);
+  color: var(--white);
+  border: 1px solid var(--amber);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+<h1 class="page-title">Texas Car Accident Settlement — How It Works</h1>
+<p class="page-subtitle">A visual guide to how personal injury settlements are calculated in Texas</p>
+
+<div class="infographic-container" id="infographic">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1680" width="800" height="1680">
+<defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;display=swap');
+    .font-display { font-family: 'DM Serif Display', Georgia, serif; }
+    .font-body { font-family: 'Inter', -apple-system, sans-serif; }
+    .navy { fill: #0F1F3D; }
+    .navy-light { fill: #162B52; }
+    .navy-mid { fill: #1A3461; }
+    .white { fill: #FFFFFF; }
+    .amber { fill: #F59E0B; }
+    .amber-dark { fill: #D97706; }
+    .red { fill: #EF4444; }
+    .gray { fill: #9BA3B5; }
+    .gray-dark { fill: #6B7489; }
+  </style>
+  <linearGradient id="headerGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0F1F3D"/>
+    <stop offset="100%" stop-color="#162B52"/>
+  </linearGradient>
+  <linearGradient id="amberGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#F59E0B"/>
+    <stop offset="100%" stop-color="#D97706"/>
+  </linearGradient>
+  <filter id="shadow">
+    <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.1"/>
+  </filter>
+</defs>
+
+<!-- ============ BACKGROUND ============ -->
+<rect width="800" height="1680" fill="#FFFFFF"/>
+
+<!-- ============ SECTION 1: HEADER ============ -->
+<rect width="800" height="180" fill="url(#headerGrad)"/>
+<rect x="0" y="176" width="800" height="4" fill="url(#amberGrad)"/>
+
+<text x="400" y="62" text-anchor="middle" class="font-display white" font-size="32" font-weight="700">How Texas Car Accident</text>
+<text x="400" y="100" text-anchor="middle" class="font-display white" font-size="32" font-weight="700">Settlements Are Calculated</text>
+<text x="400" y="132" text-anchor="middle" class="font-body gray" font-size="14" font-weight="400">The formula used by Texas attorneys and insurance companies</text>
+<text x="400" y="162" text-anchor="middle" class="font-body amber" font-size="12" font-weight="600" letter-spacing="1">texasinjurycalculator.com</text>
+
+<!-- ============ SECTION 2: TWO TYPES OF DAMAGES ============ -->
+<text x="400" y="220" text-anchor="middle" class="font-display navy" font-size="24" font-weight="700">The Two Types of Damages</text>
+<rect x="30" y="218" width="120" height="3" rx="1.5" fill="url(#amberGrad)"/>
+<rect x="650" y="218" width="120" height="3" rx="1.5" fill="url(#amberGrad)"/>
+
+<!-- Economic Damages Box -->
+<rect x="30" y="240" width="360" height="310" rx="10" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5" filter="url(#shadow)"/>
+<rect x="30" y="240" width="360" height="50" rx="10" fill="#FEF3C7"/>
+<rect x="30" y="280" width="360" height="10" fill="#FEF3C7"/>
+<text x="210" y="273" text-anchor="middle" class="font-body navy" font-size="15" font-weight="700" letter-spacing="1.5">ECONOMIC DAMAGES</text>
+<text x="210" y="305" text-anchor="middle" class="font-body gray-dark" font-size="12" font-weight="400" font-style="italic">What you can prove with receipts</text>
+
+<text x="65" y="345" class="font-body" font-size="20">&#x1F3E5;</text>
+<text x="95" y="346" class="font-body navy" font-size="14" font-weight="500">Medical bills (past)</text>
+<text x="65" y="380" class="font-body" font-size="20">&#x1F48A;</text>
+<text x="95" y="381" class="font-body navy" font-size="14" font-weight="500">Future medical costs</text>
+<text x="65" y="415" class="font-body" font-size="20">&#x1F4BC;</text>
+<text x="95" y="416" class="font-body navy" font-size="14" font-weight="500">Lost wages</text>
+<text x="65" y="450" class="font-body" font-size="20">&#x1F4C5;</text>
+<text x="95" y="451" class="font-body navy" font-size="14" font-weight="500">Future lost income</text>
+<text x="65" y="485" class="font-body" font-size="20">&#x1F697;</text>
+<text x="95" y="486" class="font-body navy" font-size="14" font-weight="500">Property damage</text>
+
+<!-- Non-Economic Damages Box -->
+<rect x="410" y="240" width="360" height="310" rx="10" fill="#FFFFFF" stroke="#0F1F3D" stroke-width="2.5" filter="url(#shadow)"/>
+<rect x="410" y="240" width="360" height="50" rx="10" fill="#EEF0F6"/>
+<rect x="410" y="280" width="360" height="10" fill="#EEF0F6"/>
+<text x="590" y="273" text-anchor="middle" class="font-body navy" font-size="15" font-weight="700" letter-spacing="1.5">NON-ECONOMIC DAMAGES</text>
+<text x="590" y="305" text-anchor="middle" class="font-body gray-dark" font-size="12" font-weight="400" font-style="italic">Pain, suffering &amp; emotional impact</text>
+
+<text x="445" y="345" class="font-body" font-size="20">&#x1F623;</text>
+<text x="475" y="346" class="font-body navy" font-size="14" font-weight="500">Physical pain</text>
+<text x="445" y="380" class="font-body" font-size="20">&#x1F630;</text>
+<text x="475" y="381" class="font-body navy" font-size="14" font-weight="500">Emotional distress</text>
+<text x="445" y="415" class="font-body" font-size="20">&#x1F634;</text>
+<text x="475" y="416" class="font-body navy" font-size="14" font-weight="500">Sleep disruption</text>
+<text x="445" y="450" class="font-body" font-size="20">&#x1F6AB;</text>
+<text x="475" y="451" class="font-body navy" font-size="14" font-weight="500">Loss of enjoyment</text>
+<text x="445" y="485" class="font-body" font-size="20">&#x1F494;</text>
+<text x="475" y="486" class="font-body navy" font-size="14" font-weight="500">Mental anguish</text>
+
+<!-- Down arrow connector -->
+<polygon points="400,560 388,574 394,574 394,590 406,590 406,574 412,574" fill="#F59E0B"/>
+
+<!-- ============ SECTION 3: MULTIPLIER ============ -->
+<rect x="30" y="600" width="740" height="240" rx="10" fill="#FEF9E7" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="400" y="636" text-anchor="middle" class="font-display navy" font-size="22" font-weight="700">The Pain &amp; Suffering Multiplier</text>
+<text x="400" y="658" text-anchor="middle" class="font-body gray-dark" font-size="13">Applied to your total economic damages</text>
+
+<!-- Scale bar -->
+<rect x="80" y="688" width="640" height="6" rx="3" fill="#E2E6EE"/>
+<rect x="80" y="688" width="640" height="6" rx="3" fill="url(#amberGrad)" opacity="0.4"/>
+
+<!-- Scale points -->
+<circle cx="120" cy="691" r="10" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5"/>
+<text x="120" y="696" text-anchor="middle" class="font-body amber-dark" font-size="11" font-weight="700">1.5</text>
+<text x="120" y="720" text-anchor="middle" class="font-body navy" font-size="12" font-weight="700">MINOR</text>
+<text x="120" y="736" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">Full recovery</text>
+<text x="120" y="748" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">minor injuries</text>
+
+<circle cx="280" cy="691" r="10" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5"/>
+<text x="280" y="696" text-anchor="middle" class="font-body amber-dark" font-size="11" font-weight="700">2.5</text>
+<text x="280" y="720" text-anchor="middle" class="font-body navy" font-size="12" font-weight="700">MODERATE</text>
+<text x="280" y="736" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">Months of treatment</text>
+<text x="280" y="748" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">broken bones</text>
+
+<circle cx="440" cy="691" r="10" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5"/>
+<text x="440" y="696" text-anchor="middle" class="font-body amber-dark" font-size="11" font-weight="700">3.5</text>
+<text x="440" y="720" text-anchor="middle" class="font-body navy" font-size="12" font-weight="700">SERIOUS</text>
+<text x="440" y="736" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">Surgery required</text>
+<text x="440" y="748" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">significant pain</text>
+
+<circle cx="560" cy="691" r="12" fill="#FFFFFF" stroke="#D97706" stroke-width="2.5"/>
+<text x="560" y="696" text-anchor="middle" class="font-body amber-dark" font-size="11" font-weight="700">4.5</text>
+<text x="560" y="720" text-anchor="middle" class="font-body navy" font-size="12" font-weight="700">SEVERE</text>
+<text x="560" y="736" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">Permanent</text>
+<text x="560" y="748" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">impairment</text>
+
+<circle cx="680" cy="691" r="14" fill="#D97706" stroke="#D97706" stroke-width="2"/>
+<text x="680" y="696" text-anchor="middle" class="font-body white" font-size="11" font-weight="700">5.0</text>
+<text x="680" y="720" text-anchor="middle" class="font-body navy" font-size="12" font-weight="700">CATASTROPHIC</text>
+<text x="680" y="736" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">TBI, paralysis</text>
+<text x="680" y="748" text-anchor="middle" class="font-body gray-dark" font-size="9" font-style="italic">life-altering</text>
+
+<!-- Multiplier scale markers -->
+<text x="120" y="776" text-anchor="middle" class="font-body navy" font-size="14" font-weight="600">1.5×</text>
+<text x="280" y="776" text-anchor="middle" class="font-body navy" font-size="14" font-weight="600">2.5×</text>
+<text x="440" y="776" text-anchor="middle" class="font-body navy" font-size="14" font-weight="600">3.5×</text>
+<text x="560" y="776" text-anchor="middle" class="font-body navy" font-size="14" font-weight="600">4.5×</text>
+<text x="680" y="776" text-anchor="middle" class="font-body navy" font-size="14" font-weight="600">5.0×</text>
+
+<!-- Connecting lines from bar to labels -->
+<line x1="120" y1="697" x2="120" y2="708" stroke="#D97706" stroke-width="1.5"/>
+<line x1="280" y1="697" x2="280" y2="708" stroke="#D97706" stroke-width="1.5"/>
+<line x1="440" y1="697" x2="440" y2="708" stroke="#D97706" stroke-width="1.5"/>
+<line x1="560" y1="697" x2="560" y2="708" stroke="#D97706" stroke-width="1.5"/>
+<line x1="680" y1="697" x2="680" y2="708" stroke="#D97706" stroke-width="1.5"/>
+
+<!-- Down arrow connector -->
+<polygon points="400,850 388,864 394,864 394,880 406,880 406,864 412,864" fill="#F59E0B"/>
+
+<!-- ============ SECTION 4: THE FORMULA ============ -->
+<text x="400" y="918" text-anchor="middle" class="font-display navy" font-size="24" font-weight="700">The Settlement Formula</text>
+
+<!-- Formula display -->
+<rect x="200" y="935" width="400" height="160" rx="10" fill="#0F1F3D"/>
+<text x="400" y="966" text-anchor="middle" class="font-body white" font-size="15" font-weight="600">ECONOMIC DAMAGES</text>
+<text x="400" y="988" text-anchor="middle" class="font-body amber" font-size="20" font-weight="700">+</text>
+<text x="400" y="1012" text-anchor="middle" class="font-body white" font-size="15" font-weight="600">PAIN &amp; SUFFERING</text>
+<text x="400" y="1032" text-anchor="middle" class="font-body gray" font-size="11">(Economic × Multiplier)</text>
+<text x="400" y="1054" text-anchor="middle" class="font-body amber" font-size="20" font-weight="700">=</text>
+<text x="400" y="1078" text-anchor="middle" class="font-body amber" font-size="17" font-weight="700">GROSS SETTLEMENT</text>
+
+<!-- Example box -->
+<rect x="80" y="1108" width="640" height="100" rx="8" fill="#F8F9FC" stroke="#E2E6EE" stroke-width="1.5"/>
+<text x="100" y="1132" class="font-body navy" font-size="12" font-weight="700">Example:</text>
+<text x="100" y="1150" class="font-body gray-dark" font-size="12">$30,000 medical + $5,000 lost wages = $35,000 economic damages</text>
+<text x="100" y="1168" class="font-body gray-dark" font-size="12">× 3.0 multiplier = $105,000 pain &amp; suffering</text>
+<text x="100" y="1190" class="font-body navy" font-size="14" font-weight="700">= $140,000 gross settlement</text>
+
+<!-- Down arrow connector -->
+<polygon points="400,1218 388,1232 394,1232 394,1248 406,1248 406,1232 412,1232" fill="#EF4444"/>
+
+<!-- ============ SECTION 5: 51% BAR RULE ============ -->
+<rect x="30" y="1258" width="740" height="180" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
+<text x="400" y="1290" text-anchor="middle" class="font-display" font-size="20" font-weight="700" fill="#B91C1C">&#x26A0;&#xFE0F; Texas 51% Bar Rule</text>
+<text x="400" y="1310" text-anchor="middle" class="font-body gray-dark" font-size="12">Your fault percentage reduces your recovery</text>
+
+<!-- Fault table -->
+<rect x="100" y="1325" width="145" height="28" rx="4" fill="#DCFCE7"/>
+<text x="172" y="1344" text-anchor="middle" class="font-body" font-size="12" font-weight="600" fill="#166534">0% fault → Full recovery</text>
+
+<rect x="255" y="1325" width="145" height="28" rx="4" fill="#FEF9C3"/>
+<text x="327" y="1344" text-anchor="middle" class="font-body" font-size="12" font-weight="600" fill="#854D0E">25% → 25% reduction</text>
+
+<rect x="410" y="1325" width="145" height="28" rx="4" fill="#FFEDD5"/>
+<text x="482" y="1344" text-anchor="middle" class="font-body" font-size="12" font-weight="600" fill="#9A3412">50% → 50% reduction</text>
+
+<rect x="565" y="1325" width="145" height="28" rx="4" fill="#FEE2E2"/>
+<text x="637" y="1344" text-anchor="middle" class="font-body" font-size="12" font-weight="700" fill="#B91C1C">51%+ → $0 RECOVERY</text>
+
+<text x="400" y="1388" text-anchor="middle" class="font-body" font-size="13" font-weight="700" fill="#B91C1C">If you are 51% or more at fault in Texas, you cannot recover any damages.</text>
+<text x="400" y="1410" text-anchor="middle" class="font-body gray" font-size="10">Texas Civil Practice &amp; Remedies Code §33.001</text>
+
+<!-- Down arrow connector -->
+<polygon points="400,1448 388,1462 394,1462 394,1478 406,1478 406,1462 412,1462" fill="#F59E0B"/>
+
+<!-- ============ SECTION 6: NET TO YOU ============ -->
+<rect x="150" y="1488" width="500" height="110" rx="10" fill="#FEF9E7" stroke="#F59E0B" stroke-width="1.5"/>
+<rect x="150" y="1488" width="500" height="36" rx="10" fill="url(#amberGrad)"/>
+<rect x="150" y="1514" width="500" height="10" fill="url(#amberGrad)"/>
+<text x="400" y="1512" text-anchor="middle" class="font-body navy" font-size="13" font-weight="700" letter-spacing="1">NET RECOVERY FORMULA</text>
+
+<text x="400" y="1552" text-anchor="middle" class="font-body navy" font-size="16" font-weight="700">Gross Settlement</text>
+<text x="400" y="1570" text-anchor="middle" class="font-body amber-dark" font-size="14" font-weight="700">− Attorney Fee (typically 33%)</text>
+<text x="400" y="1586" text-anchor="middle" class="font-body navy" font-size="14" font-weight="700">= Net to You</text>
+
+<text x="400" y="1616" text-anchor="middle" class="font-body gray-dark" font-size="11" font-style="italic">Texas personal injury attorneys work on contingency — no fee unless you win.</text>
+
+<!-- ============ SECTION 7: FOOTER ============ -->
+<rect x="0" y="1632" width="800" height="48" fill="url(#headerGrad)"/>
+<text x="310" y="1656" text-anchor="middle" class="font-body white" font-size="12" font-weight="400">Calculate your personal estimate free at</text>
+<text x="540" y="1657" text-anchor="middle" class="font-body amber" font-size="15" font-weight="700">texasinjurycalculator.com</text>
+<text x="400" y="1674" text-anchor="middle" class="font-body gray" font-size="10">Free • Instant • No sign-up required</text>
+
+</svg>
+</div>
+
+<!-- Share Row -->
+<div class="share-row">
+  <button class="share-btn" onclick="copyLink()">
+    <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/></svg>
+    Copy Link
+  </button>
+  <button class="share-btn" onclick="downloadSVG()">
+    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Download
+  </button>
+  <a class="share-btn" href="mailto:?subject=How%20Texas%20Car%20Accident%20Settlements%20Are%20Calculated&body=Check%20out%20this%20infographic%20on%20how%20Texas%20personal%20injury%20settlements%20work%3A%0A%0Ahttps%3A%2F%2Ftexasinjurycalculator.com%2Fsettlement-infographic">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="#F59E0B" stroke-width="2"/><polyline points="22,6 12,13 2,6" fill="none" stroke="#F59E0B" stroke-width="2"/></svg>
+    Email
+  </a>
+</div>
+
+<!-- Embed Section -->
+<div class="embed-section">
+  <h3>Embed This Infographic</h3>
+  <p>Feel free to share or embed this infographic on your website. Please include attribution link to texasinjurycalculator.com</p>
+  <textarea class="embed-textarea" id="embedCode" readonly><a href="https://texasinjurycalculator.com" target="_blank" rel="noopener">
+<img src="https://texasinjurycalculator.com/settlement-infographic.html" alt="How Texas Car Accident Settlements Are Calculated — texasinjurycalculator.com" width="800">
+</a></textarea>
+  <button class="copy-btn" onclick="copyEmbed()">
+    <svg viewBox="0 0 24 24" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" fill="none" stroke="#0F1F3D" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="#0F1F3D" stroke-width="2"/></svg>
+    Copy Embed Code
+  </button>
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+function copyLink() {
+  navigator.clipboard.writeText('https://texasinjurycalculator.com/settlement-infographic').then(function() {
+    showToast('Link copied to clipboard');
+  });
+}
+
+function copyEmbed() {
+  var code = document.getElementById('embedCode');
+  navigator.clipboard.writeText(code.value).then(function() {
+    showToast('Embed code copied');
+  });
+}
+
+function downloadSVG() {
+  var svg = document.querySelector('#infographic svg');
+  var data = new XMLSerializer().serializeToString(svg);
+  var blob = new Blob([data], { type: 'image/svg+xml' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'texas-settlement-infographic.svg';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
