@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Texas Injury Settlement Calculator — Free Estimate | What Is My Case Worth?</title>
+<title>Texas Personal Injury Settlement Calculator (2026) — Free Instant Estimate</title>
 <meta name="description" content="Free Texas personal injury settlement calculator. Enter your medical bills, lost wages, and injury details for an instant estimate. Texas 51% fault rule included.">
 <meta property="og:title" content="Texas Injury Settlement Calculator — Free Estimate">
 <meta property="og:description" content="Free Texas personal injury settlement calculator. Enter your medical bills, lost wages, and injury details for an instant estimate. Texas 51% fault rule included.">
@@ -17,10 +17,26 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="alternate icon" href="/favicon.ico">
 <meta name="theme-color" content="#0F1F3D">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Texas Injury Settlement Calculator",
+  "url": "https://texasinjurycalculator.com",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "Free Texas personal injury settlement calculator. Estimates recovery based on medical bills, lost wages, injury severity and Texas 51% fault rule.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 
 <style>
 /* ============================================================
-   RESET & TOKENS
+   RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -57,7 +73,7 @@
   --font-body: 'Inter', -apple-system, sans-serif;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
@@ -69,12 +85,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Grain texture */
+/* Subtle grain texture overlay */
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
 }
@@ -93,7 +109,7 @@ body::before {
   padding: 0 20px;
 }
 .header-inner {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -138,19 +154,9 @@ body::before {
 .header-phone:hover { color: var(--amber-light); }
 .header-phone svg { width: 16px; height: 16px; }
 
-
 /* ============================================================
-   LAYOUT
+   HERO INTRO
    ============================================================ */
-.page-wrap {
-  position: relative;
-  z-index: 1;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 32px 16px 60px;
-}
-
-/* Hero intro */
 .hero-intro {
   text-align: center;
   padding: 20px 0 40px;
@@ -162,7 +168,7 @@ body::before {
   line-height: 1.2;
   margin-bottom: 12px;
 }
-.hero-intro p {
+.hero-intro .intro {
   font-size: 15px;
   color: var(--gray-400);
   max-width: 520px;
@@ -175,98 +181,189 @@ body::before {
 }
 
 /* ============================================================
-   SECTION CARDS
+   LAYOUT
    ============================================================ */
-.calc-section {
+.calculator-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+.progress-wrap {
+  margin-bottom: 32px;
+}
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+.progress-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--navy-light);
+  border: 2px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-400);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+.progress-step.active .progress-dot {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--navy);
+  box-shadow: 0 0 0 4px var(--amber-glow), 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+.progress-step.completed .progress-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+.progress-label {
+  font-size: 11px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  white-space: nowrap;
+  transition: color var(--transition);
+  display: none;
+}
+.progress-step.active .progress-label,
+.progress-step.completed .progress-label {
+  color: var(--gray-300);
+}
+.progress-line {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  z-index: 1;
+}
+.progress-line-fill {
+  height: 100%;
+  background: var(--green);
+  width: 0;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress-step:last-child .progress-line { display: none; }
+.progress-step.completed .progress-line .progress-line-fill { width: 100%; }
+
+@media (min-width: 600px) {
+  .progress-label { display: block; }
+}
+
+/* ============================================================
+   CARD / STEP CONTAINER
+   ============================================================ */
+.step-card {
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
-  padding: 28px 22px;
-  margin-bottom: 20px;
-  scroll-margin-top: 76px;
+  padding: 32px 24px;
+  display: none;
+  animation: cardIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.calc-section:last-of-type { margin-bottom: 28px; }
+.step-card.active { display: block; }
 
-.section-header {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 4px;
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.section-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--navy);
-  color: var(--amber);
-  font-size: 12px;
-  font-weight: 700;
-  flex-shrink: 0;
-  position: relative;
-  top: -1px;
-}
-.section-heading {
+
+.step-heading {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 26px;
   color: var(--navy);
+  margin-bottom: 6px;
   line-height: 1.2;
 }
-.section-subheading {
+.step-subheading {
   font-size: 14px;
   color: var(--gray-500);
-  margin-bottom: 22px;
-  margin-left: 36px;
+  margin-bottom: 28px;
   line-height: 1.5;
 }
 
 @media (min-width: 600px) {
-  .calc-section { padding: 36px 32px; }
-  .section-heading { font-size: 26px; }
+  .step-card { padding: 40px 36px; }
+  .step-heading { font-size: 30px; }
 }
 
 /* ============================================================
-   ACCIDENT TYPE CARDS
+   ACCIDENT TYPE CARDS (STEP 1)
    ============================================================ */
 .type-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 8px;
 }
 .type-card {
   background: var(--off-white);
   border: 2px solid var(--gray-200);
   border-radius: var(--radius-sm);
-  padding: 16px 12px;
+  padding: 20px 14px;
   text-align: center;
   cursor: pointer;
   transition: all var(--transition);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  min-height: 88px;
+  gap: 8px;
+  min-height: 100px;
   justify-content: center;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
-.type-card:hover { border-color: var(--amber); background: var(--amber-glow); }
-.type-card.selected { border-color: var(--amber); background: var(--amber-glow); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
-.type-card-emoji { font-size: 26px; line-height: 1; }
-.type-card-label { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+.type-card:hover {
+  border-color: var(--amber);
+  background: var(--amber-glow);
+}
+.type-card.selected {
+  border-color: var(--amber);
+  background: var(--amber-glow);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+.type-card-emoji { font-size: 28px; line-height: 1; }
+.type-card-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+}
 
 @media (min-width: 600px) {
   .type-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .type-card { padding: 24px 16px; }
+  .type-card-label { font-size: 14px; }
 }
 
 /* ============================================================
    FORM ELEMENTS
    ============================================================ */
-.field-group { margin-bottom: 22px; }
-.field-group:last-child { margin-bottom: 0; }
-
+.field-group {
+  margin-bottom: 24px;
+}
 .field-label {
   display: flex;
   align-items: center;
@@ -276,7 +373,6 @@ body::before {
   color: var(--navy);
   margin-bottom: 8px;
 }
-
 .field-tooltip {
   display: inline-flex;
   align-items: center;
@@ -322,18 +418,23 @@ body::before {
 .field-tooltip:hover .tip-text,
 .field-tooltip:focus .tip-text { display: block; }
 
-.dollar-input-wrap { position: relative; }
+/* Dollar input wrapper */
+.dollar-input-wrap {
+  position: relative;
+}
 .dollar-prefix {
   position: absolute;
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--gray-300);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-400);
   pointer-events: none;
 }
-.dollar-input-wrap input[type="text"] { padding-left: 32px !important; }
+.dollar-input-wrap input {
+  padding-left: 30px;
+}
 
 input[type="text"],
 input[type="number"],
@@ -362,23 +463,25 @@ input.error, select.error, textarea.error {
   border-color: var(--red);
   box-shadow: 0 0 0 3px var(--red-bg);
 }
-textarea { height: 100px; padding: 12px 14px; resize: vertical; }
+textarea {
+  height: 100px;
+  padding: 12px 14px;
+  resize: vertical;
+}
 
-.field-error { font-size: 12px; color: var(--red); margin-top: 4px; display: none; }
+.field-error {
+  font-size: 12px;
+  color: var(--red);
+  margin-top: 4px;
+  display: none;
+}
 .field-error.visible { display: block; }
 
-/* Side-by-side fields */
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-@media (min-width: 500px) {
-  .field-row { grid-template-columns: 1fr 1fr; }
-}
-
 /* Date selects */
-.date-row { display: flex; gap: 12px; }
+.date-row {
+  display: flex;
+  gap: 12px;
+}
 .date-row select {
   flex: 1;
   cursor: pointer;
@@ -388,7 +491,7 @@ textarea { height: 100px; padding: 12px 14px; resize: vertical; }
   padding-right: 36px;
 }
 
-/* Range helper */
+/* Collapsible range helper */
 .range-toggle {
   display: inline-flex;
   align-items: center;
@@ -396,7 +499,7 @@ textarea { height: 100px; padding: 12px 14px; resize: vertical; }
   margin-top: 8px;
   padding: 6px 14px;
   border-radius: 20px;
-  background: rgba(15,31,61,0.04);
+  background: rgba(15, 31, 61, 0.04);
   border: 1px solid var(--gray-200);
   font-size: 13px;
   font-weight: 500;
@@ -405,11 +508,25 @@ textarea { height: 100px; padding: 12px 14px; resize: vertical; }
   transition: all var(--transition);
   user-select: none;
 }
-.range-toggle:hover { background: rgba(15,31,61,0.07); }
-.range-toggle svg { width: 14px; height: 14px; transition: transform var(--transition); }
-.range-toggle.open svg { transform: rotate(180deg); }
-.range-content { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
-.range-content.open { max-height: 300px; }
+.range-toggle:hover {
+  background: rgba(15, 31, 61, 0.07);
+}
+.range-toggle svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition);
+}
+.range-toggle.open svg {
+  transform: rotate(180deg);
+}
+.range-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.range-content.open {
+  max-height: 300px;
+}
 .range-table {
   margin-top: 12px;
   background: var(--off-white);
@@ -417,19 +534,34 @@ textarea { height: 100px; padding: 12px 14px; resize: vertical; }
   border: 1px solid var(--gray-200);
   overflow: hidden;
 }
-.range-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.range-table th { background: var(--gray-100); font-weight: 600; color: var(--navy); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--gray-200); }
-.range-table td { padding: 8px 12px; border-bottom: 1px solid var(--gray-100); color: var(--gray-600); }
+.range-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.range-table th {
+  background: var(--gray-100);
+  font-weight: 600;
+  color: var(--navy);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.range-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-600);
+}
 .range-table tr:last-child td { border-bottom: none; }
 
 /* Toggle switch */
 .toggle-group {
   display: flex;
+  gap: 0;
   background: var(--off-white);
   border-radius: var(--radius-sm);
   border: 2px solid var(--gray-200);
   overflow: hidden;
-  max-width: 200px;
 }
 .toggle-btn {
   flex: 1;
@@ -443,11 +575,22 @@ textarea { height: 100px; padding: 12px 14px; resize: vertical; }
   cursor: pointer;
   transition: all var(--transition);
 }
-.toggle-btn.active { background: var(--amber); color: var(--navy); }
+.toggle-btn.active {
+  background: var(--amber);
+  color: var(--navy);
+}
 
-.future-income-fields { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
-.future-income-fields.open { max-height: 300px; }
-.future-income-inner { padding-top: 20px; }
+.future-income-fields {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.future-income-fields.open {
+  max-height: 300px;
+}
+.future-income-inner {
+  padding-top: 20px;
+}
 
 .checkbox-row {
   display: flex;
@@ -459,55 +602,96 @@ textarea { height: 100px; padding: 12px 14px; resize: vertical; }
   cursor: pointer;
   user-select: none;
 }
-.checkbox-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--amber); cursor: pointer; }
+.checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--amber);
+  cursor: pointer;
+}
 
 /* ============================================================
-   SEVERITY CARDS
+   SEVERITY CARDS (STEP 6)
    ============================================================ */
-.severity-grid {
-  display: grid;
-  gap: 10px;
-}
 .severity-card {
   border: 2px solid var(--gray-200);
   border-radius: var(--radius-sm);
-  padding: 16px 16px 16px 20px;
+  padding: 18px 18px 18px 22px;
+  margin-bottom: 12px;
   cursor: pointer;
   transition: all var(--transition);
+  position: relative;
   border-left-width: 5px;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+.severity-card:last-child { margin-bottom: 0; }
 .severity-card:hover { box-shadow: var(--card-shadow); }
-.severity-card.selected { box-shadow: var(--card-shadow-hover); }
+.severity-card.selected {
+  box-shadow: var(--card-shadow-hover);
+}
 .severity-card[data-severity="minor"] { border-left-color: var(--green); }
 .severity-card[data-severity="moderate"] { border-left-color: var(--yellow); }
 .severity-card[data-severity="serious"] { border-left-color: var(--orange); }
 .severity-card[data-severity="severe"] { border-left-color: var(--red); }
 .severity-card[data-severity="catastrophic"] { border-left-color: #1F2937; }
+
 .severity-card[data-severity="minor"].selected { background: var(--green-bg); border-color: var(--green); border-left-color: var(--green); }
 .severity-card[data-severity="moderate"].selected { background: var(--yellow-bg); border-color: var(--yellow); border-left-color: var(--yellow); }
 .severity-card[data-severity="serious"].selected { background: var(--orange-bg); border-color: var(--orange); border-left-color: var(--orange); }
 .severity-card[data-severity="severe"].selected { background: var(--red-bg); border-color: var(--red); border-left-color: var(--red); }
 .severity-card[data-severity="catastrophic"].selected { background: rgba(31,41,55,0.06); border-color: #1F2937; border-left-color: #1F2937; }
 
-.severity-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
-.severity-label { font-size: 14px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.03em; }
-.severity-mult { font-size: 11px; font-weight: 600; color: var(--gray-400); background: var(--gray-100); padding: 2px 8px; border-radius: 10px; }
-.severity-desc { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
-
-@media (min-width: 600px) {
-  .severity-grid { grid-template-columns: 1fr 1fr; }
-  .severity-card[data-severity="catastrophic"] { grid-column: 1 / -1; }
+.severity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.severity-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.severity-mult {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-400);
+  background: var(--gray-100);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.severity-desc {
+  font-size: 13px;
+  color: var(--gray-500);
+  line-height: 1.5;
 }
 
 /* ============================================================
-   FAULT SLIDER
+   FAULT SLIDER (STEP 7)
    ============================================================ */
-.fault-display { text-align: center; margin-bottom: 20px; }
-.fault-pct { font-family: var(--font-display); font-size: 56px; color: var(--navy); line-height: 1; transition: color var(--transition); }
-.fault-pct-label { font-size: 13px; color: var(--gray-400); margin-top: 4px; }
-.fault-slider-wrap { padding: 0 4px; margin-bottom: 16px; }
+.fault-display {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.fault-pct {
+  font-family: var(--font-display);
+  font-size: 64px;
+  color: var(--navy);
+  line-height: 1;
+  transition: color var(--transition);
+}
+.fault-pct-label {
+  font-size: 14px;
+  color: var(--gray-400);
+  margin-top: 4px;
+}
+
+.fault-slider-wrap {
+  padding: 0 4px;
+  margin-bottom: 20px;
+}
 
 input[type="range"] {
   -webkit-appearance: none;
@@ -528,8 +712,12 @@ input[type="range"]::-webkit-slider-thumb {
   border: 3px solid var(--navy);
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   cursor: grab;
+  transition: box-shadow var(--transition);
 }
-input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
 input[type="range"]::-moz-range-thumb {
   width: 28px;
   height: 28px;
@@ -539,11 +727,20 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   cursor: grab;
 }
-.fault-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-400); margin-top: 6px; }
+
+.fault-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--gray-400);
+  margin-top: 8px;
+  padding: 0 2px;
+}
+
 .fault-feedback {
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   transition: all var(--transition);
   margin-top: 8px;
@@ -554,61 +751,83 @@ input[type="range"]::-moz-range-thumb {
 .fault-feedback.level-bar { background: var(--red-bg); color: #7F1D1D; border: 1px solid rgba(239,68,68,0.2); }
 
 /* ============================================================
-   CALCULATE BUTTON
+   NAVIGATION BUTTONS
    ============================================================ */
-.calculate-wrap {
-  text-align: center;
-  padding: 8px 0 0;
-}
-.btn-calculate {
-  display: inline-flex;
+.step-nav {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 420px;
-  height: 56px;
-  background: var(--amber);
-  color: var(--navy);
+  margin-top: 28px;
+  gap: 12px;
+}
+.btn {
+  height: 48px;
+  padding: 0 28px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   border: none;
-  border-radius: var(--radius);
   cursor: pointer;
   transition: all var(--transition);
-  box-shadow: 0 4px 20px rgba(245,158,11,0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 44px;
+  justify-content: center;
 }
-.btn-calculate:hover {
+.btn-back {
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+.btn-back:hover { background: var(--gray-200); color: var(--gray-600); }
+.btn-next {
+  background: var(--amber);
+  color: var(--navy);
+  margin-left: auto;
+}
+.btn-next:hover {
   background: var(--amber-dark);
-  box-shadow: 0 6px 28px rgba(245,158,11,0.35);
-  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
-.btn-calculate:active { transform: translateY(0); }
-.btn-calculate svg { width: 20px; height: 20px; }
+.btn-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.btn-next:disabled:hover { background: var(--amber); }
+.btn-next.warning-btn {
+  background: var(--red);
+  color: var(--white);
+}
+.btn-next.warning-btn:hover { background: #DC2626; }
+
+.btn-submit {
+  width: 100%;
+  height: 52px;
+  background: var(--amber);
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+}
+.btn-submit:hover {
+  background: var(--amber-dark);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
 
 /* ============================================================
-   RESULTS
+   RESULTS SCREEN
    ============================================================ */
 .results-section {
   display: none;
-  scroll-margin-top: 76px;
+  animation: cardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.results-section.active {
-  display: block;
-  animation: resultsIn 0.6s cubic-bezier(0.4,0,0.2,1);
-}
-@keyframes resultsIn {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Divider line before results */
-.results-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.08);
-  margin: 36px 0 32px;
-}
+.results-section.active { display: block; }
 
 .result-hero {
   text-align: center;
@@ -633,14 +852,21 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1;
   margin-bottom: 8px;
 }
-.result-hero-net { font-size: 15px; color: var(--gray-500); }
-.result-hero-net span { font-weight: 700; color: var(--navy); }
+.result-hero-net {
+  font-size: 15px;
+  color: var(--gray-500);
+}
+.result-hero-net span {
+  font-weight: 700;
+  color: var(--navy);
+}
 
 @media (min-width: 600px) {
   .result-hero { padding: 48px 36px; }
   .result-hero-amount { font-size: 64px; }
 }
 
+/* Breakdown table */
 .result-breakdown {
   background: var(--white);
   border-radius: var(--radius);
@@ -654,20 +880,68 @@ input[type="range"]::-moz-range-thumb {
   color: var(--navy);
   margin-bottom: 20px;
 }
-.breakdown-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 14px; color: var(--gray-600); }
-.breakdown-row.total { border-top: 2px solid var(--gray-200); margin-top: 4px; padding-top: 14px; font-weight: 700; color: var(--navy); font-size: 16px; }
-.breakdown-row.subtotal { border-top: 1px solid var(--gray-100); margin-top: 4px; padding-top: 14px; font-weight: 600; color: var(--navy); }
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--gray-600);
+}
+.breakdown-row.total {
+  border-top: 2px solid var(--gray-200);
+  margin-top: 4px;
+  padding-top: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 16px;
+}
+.breakdown-row.subtotal {
+  border-top: 1px solid var(--gray-100);
+  margin-top: 4px;
+  padding-top: 14px;
+  font-weight: 600;
+  color: var(--navy);
+}
 .breakdown-row.deduction { color: var(--red); }
-.breakdown-row.net { border-top: 2px solid var(--navy); margin-top: 8px; padding-top: 14px; }
-.breakdown-row.net .breakdown-val { font-family: var(--font-display); font-size: 22px; color: var(--navy); }
+.breakdown-row.net {
+  border-top: 2px solid var(--navy);
+  margin-top: 8px;
+  padding-top: 14px;
+}
+.breakdown-row.net .breakdown-val {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--navy);
+}
 .breakdown-val { font-weight: 600; white-space: nowrap; }
 
-.alert-box { padding: 18px 20px; border-radius: var(--radius-sm); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
-.alert-red { background: var(--red-bg); border: 1px solid rgba(239,68,68,0.2); color: #7F1D1D; }
-.alert-amber { background: var(--amber-glow); border: 1px solid rgba(245,158,11,0.2); color: #78350F; }
-.alert-blue { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.15); color: #1E3A5F; }
+/* Alert boxes */
+.alert-box {
+  padding: 18px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.alert-red {
+  background: var(--red-bg);
+  border: 1px solid rgba(239,68,68,0.2);
+  color: #7F1D1D;
+}
+.alert-amber {
+  background: var(--amber-glow);
+  border: 1px solid rgba(245,158,11,0.2);
+  color: #78350F;
+}
+.alert-blue {
+  background: rgba(59,130,246,0.06);
+  border: 1px solid rgba(59,130,246,0.15);
+  color: #1E3A5F;
+}
 .alert-box strong { display: block; margin-bottom: 4px; font-size: 15px; }
 
+/* Bar rule result */
 .bar-rule-card {
   background: var(--white);
   border-radius: var(--radius);
@@ -676,9 +950,21 @@ input[type="range"]::-moz-range-thumb {
   padding: 40px 24px;
   margin-bottom: 20px;
 }
-.bar-rule-card .bar-zero { font-family: var(--font-display); font-size: 52px; color: var(--red); margin: 16px 0; }
-.bar-rule-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; max-width: 460px; margin: 0 auto; }
+.bar-rule-card .bar-zero {
+  font-family: var(--font-display);
+  font-size: 52px;
+  color: var(--red);
+  margin: 16px 0;
+}
+.bar-rule-card p {
+  font-size: 14px;
+  color: var(--gray-500);
+  line-height: 1.6;
+  max-width: 460px;
+  margin: 0 auto;
+}
 
+/* Disclaimer */
 .disclaimer-text {
   font-size: 12px;
   color: var(--gray-400);
@@ -698,33 +984,49 @@ input[type="range"]::-moz-range-thumb {
   padding: 32px 24px;
   margin-top: 32px;
 }
-.contact-heading { font-family: var(--font-display); font-size: 24px; color: var(--navy); margin-bottom: 6px; }
-.contact-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
-.contact-grid { display: grid; gap: 16px; }
-.btn-submit {
-  width: 100%;
-  height: 52px;
-  background: var(--amber);
+.contact-heading {
+  font-family: var(--font-display);
+  font-size: 24px;
   color: var(--navy);
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: var(--radius-sm);
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-body);
-  transition: all var(--transition);
+  margin-bottom: 6px;
 }
-.btn-submit:hover { background: var(--amber-dark); box-shadow: 0 4px 16px rgba(245,158,11,0.3); }
-
-.contact-success { display: none; text-align: center; padding: 32px 20px; }
+.contact-sub {
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.contact-grid {
+  display: grid;
+  gap: 16px;
+}
+.contact-success {
+  display: none;
+  text-align: center;
+  padding: 32px 20px;
+}
 .contact-success .check-icon {
-  width: 56px; height: 56px; border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   background: var(--green-bg);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 16px; font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 28px;
 }
-.contact-success h3 { font-family: var(--font-display); font-size: 22px; color: var(--navy); margin-bottom: 8px; }
-.contact-success p { font-size: 14px; color: var(--gray-500); line-height: 1.5; }
+.contact-success h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.contact-success p {
+  font-size: 14px;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
 
 @media (min-width: 600px) {
   .contact-card { padding: 40px 36px; }
@@ -733,10 +1035,13 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* ============================================================
-   RECALCULATE BUTTON
+   START-OVER BUTTON
    ============================================================ */
-.recalc-wrap { text-align: center; margin-top: 24px; }
-.btn-recalc {
+.start-over-wrap {
+  text-align: center;
+  margin-top: 24px;
+}
+.btn-start-over {
   background: none;
   border: 1px solid rgba(255,255,255,0.15);
   color: var(--gray-400);
@@ -748,7 +1053,10 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   transition: all var(--transition);
 }
-.btn-recalc:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+.btn-start-over:hover {
+  border-color: rgba(255,255,255,0.3);
+  color: var(--white);
+}
 
 /* ============================================================
    FOOTER
@@ -819,7 +1127,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* ============================================================
-   VALIDATION
+   VALIDATION SHAKE
    ============================================================ */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
@@ -829,43 +1137,6 @@ input[type="range"]::-moz-range-thumb {
   80% { transform: translateX(4px); }
 }
 .shake { animation: shake 0.4s ease-in-out; }
-.field-highlight { box-shadow: 0 0 0 3px var(--red-bg); border-color: var(--red) !important; }
-
-/* ============================================================
-   QUICK-SELECT PILLS
-   ============================================================ */
-.quick-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-.quick-pill {
-  padding: 7px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--navy-mid);
-  background: var(--off-white);
-  border: 1.5px solid var(--gray-200);
-  cursor: pointer;
-  transition: all var(--transition);
-  white-space: nowrap;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  font-family: var(--font-body);
-  line-height: 1;
-}
-.quick-pill:hover { border-color: var(--amber); background: var(--amber-glow); }
-.quick-pill.selected { border-color: var(--amber); background: var(--amber-glow); color: var(--navy); }
-.quick-pill-custom {
-  color: var(--gray-400);
-  font-weight: 500;
-  font-style: italic;
-  border-style: dashed;
-}
-.quick-pill-custom:hover { border-style: solid; }
-.quick-pill-custom.selected { border-style: solid; }
 </style>
 </head>
 <body>
@@ -897,19 +1168,59 @@ input[type="range"]::-moz-range-thumb {
   </div>
 </header>
 
-
-<main class="page-wrap">
+<main class="calculator-wrap">
 
   <!-- HERO -->
   <div class="hero-intro">
     <h1>What Is Your Texas Injury Case Worth?</h1>
-    <p>Fill in the details below and we'll estimate your settlement based on Texas personal injury law — including the 51% comparative fault rule.</p>
+    <p class="intro">Fill in the details below and we'll estimate your settlement based on Texas personal injury law — including the 51% comparative fault rule.</p>
+    <p class="intro" style="margin-top:12px;">The Texas Injury Settlement Calculator gives you an instant, free estimate of what your personal injury case may be worth — based on the same multiplier formula used by Texas attorneys and insurance companies. Enter your medical bills, lost wages, injury severity, and fault percentage and the calculator applies Texas's modified comparative negligence rule, including the 51% Bar Rule under Texas Civil Practice &amp; Remedies Code &sect;33.001, to estimate your potential recovery. Whether you were injured in a car accident, truck accident, motorcycle crash, slip and fall, or workplace injury, this tool walks you through each factor step by step — with guidance on what to enter if you don't have exact figures yet. No personal information required to see your estimate. Results are instant. This calculator is completely free.</p>
   </div>
 
-  <!-- ==================== 1. ACCIDENT TYPE ==================== -->
-  <section class="calc-section" id="sec-type">
-    <div class="section-header"><div class="section-number">1</div><h2 class="section-heading">What type of accident were you in?</h2></div>
-    <p class="section-subheading">Select the option that best describes your situation.</p>
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-steps">
+      <div class="progress-step active" data-step="1">
+        <div class="progress-dot">1</div>
+        <div class="progress-label">Type</div>
+        <div class="progress-line"><div class="progress-line-fill"></div></div>
+      </div>
+      <div class="progress-step" data-step="2">
+        <div class="progress-dot">2</div>
+        <div class="progress-label">Date</div>
+        <div class="progress-line"><div class="progress-line-fill"></div></div>
+      </div>
+      <div class="progress-step" data-step="3">
+        <div class="progress-dot">3</div>
+        <div class="progress-label">Medical</div>
+        <div class="progress-line"><div class="progress-line-fill"></div></div>
+      </div>
+      <div class="progress-step" data-step="4">
+        <div class="progress-dot">4</div>
+        <div class="progress-label">Income</div>
+        <div class="progress-line"><div class="progress-line-fill"></div></div>
+      </div>
+      <div class="progress-step" data-step="5">
+        <div class="progress-dot">5</div>
+        <div class="progress-label">Property</div>
+        <div class="progress-line"><div class="progress-line-fill"></div></div>
+      </div>
+      <div class="progress-step" data-step="6">
+        <div class="progress-dot">6</div>
+        <div class="progress-label">Severity</div>
+        <div class="progress-line"><div class="progress-line-fill"></div></div>
+      </div>
+      <div class="progress-step" data-step="7">
+        <div class="progress-dot">7</div>
+        <div class="progress-label">Fault</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 1: ACCIDENT TYPE ==================== -->
+  <div class="step-card active" id="step1">
+    <h2 class="step-heading">What type of accident were you in?</h2>
+    <p class="step-subheading">Select the option that best describes your situation.</p>
     <div class="type-grid">
       <div class="type-card" data-type="car_truck" onclick="selectType(this)">
         <span class="type-card-emoji">&#x1F697;</span>
@@ -936,13 +1247,17 @@ input[type="range"]::-moz-range-thumb {
         <span class="type-card-label">Other</span>
       </div>
     </div>
-    <div id="err-type" class="field-error" style="margin-top:12px">Please select an accident type.</div>
-  </section>
+    <div id="step1Error" class="field-error" style="margin-top:12px">Please select an accident type to continue.</div>
+    <div class="step-nav">
+      <div></div>
+      <button class="btn btn-next" onclick="nextStep(1)">Next <span aria-hidden="true">&rarr;</span></button>
+    </div>
+  </div>
 
-  <!-- ==================== 2. ACCIDENT DATE ==================== -->
-  <section class="calc-section" id="sec-date">
-    <div class="section-header"><div class="section-number">2</div><h2 class="section-heading">When did the accident occur?</h2></div>
-    <p class="section-subheading">This helps us check the Texas statute of limitations for your claim.</p>
+  <!-- ==================== STEP 2: ACCIDENT DATE ==================== -->
+  <div class="step-card" id="step2">
+    <h2 class="step-heading">When did the accident occur?</h2>
+    <p class="step-subheading">This helps us check the Texas statute of limitations for your claim.</p>
     <div class="field-group">
       <label class="field-label">Month and year of accident</label>
       <div class="date-row">
@@ -965,28 +1280,27 @@ input[type="range"]::-moz-range-thumb {
           <option value="">Year</option>
         </select>
       </div>
-      <div id="err-date" class="field-error">Please select both month and year.</div>
+      <div id="step2Error" class="field-error">Please select both month and year.</div>
     </div>
-  </section>
+    <div class="step-nav">
+      <button class="btn btn-back" onclick="prevStep(2)">&larr; Back</button>
+      <button class="btn btn-next" onclick="nextStep(2)">Next &rarr;</button>
+    </div>
+  </div>
 
-  <!-- ==================== 3. MEDICAL EXPENSES ==================== -->
-  <section class="calc-section" id="sec-medical">
-    <div class="section-header"><div class="section-number">3</div><h2 class="section-heading">What are your medical expenses?</h2></div>
-    <p class="section-subheading">Include all treatment costs — even if insurance covered some or all of the bill.</p>
+  <!-- ==================== STEP 3: MEDICAL EXPENSES ==================== -->
+  <div class="step-card" id="step3">
+    <h2 class="step-heading">What are your medical expenses?</h2>
+    <p class="step-subheading">Include all treatment costs — even if insurance covered some or all of the bill.</p>
 
     <div class="field-group">
-      <label class="field-label">Medical bills so far</label>
-      <div class="quick-pills" data-input="medBills">
-        <button type="button" class="quick-pill" data-value="2500" onclick="pickPill(this)">$2,500</button>
-        <button type="button" class="quick-pill" data-value="10000" onclick="pickPill(this)">$10,000</button>
-        <button type="button" class="quick-pill" data-value="35000" onclick="pickPill(this)">$35,000</button>
-        <button type="button" class="quick-pill" data-value="75000" onclick="pickPill(this)">$75,000</button>
-        <button type="button" class="quick-pill" data-value="150000" onclick="pickPill(this)">$150,000</button>
-        <button type="button" class="quick-pill quick-pill-custom" data-value="custom" onclick="pickCustom(this)">Other</button>
-      </div>
+      <label class="field-label" for="medBills">
+        Medical bills so far
+        <span class="field-tooltip" tabindex="0">?<span class="tip-text">Include every dollar billed — ER, ambulance, surgery, hospital, medications, physical therapy, chiropractic, MRI/X-ray. Include the full amount even if insurance paid.</span></span>
+      </label>
       <div class="dollar-input-wrap">
         <span class="dollar-prefix">$</span>
-        <input type="text" id="medBills" inputmode="numeric" placeholder="Enter exact amount" autocomplete="off">
+        <input type="text" id="medBills" inputmode="numeric" placeholder="0" autocomplete="off">
       </div>
       <div class="range-toggle" onclick="toggleRange(this)">
         Not sure? See common ranges
@@ -1005,65 +1319,48 @@ input[type="range"]::-moz-range-thumb {
           </table>
         </div>
       </div>
-      <div id="err-medbills" class="field-error">Please enter or select your medical bills.</div>
+      <div id="medBillsError" class="field-error">Please enter your medical bills.</div>
     </div>
 
     <div class="field-group">
-      <label class="field-label">Estimated future medical costs</label>
-      <div class="quick-pills" data-input="medFuture">
-        <button type="button" class="quick-pill selected" data-value="0" onclick="pickPill(this)">$0</button>
-        <button type="button" class="quick-pill" data-value="5000" onclick="pickPill(this)">$5,000</button>
-        <button type="button" class="quick-pill" data-value="15000" onclick="pickPill(this)">$15,000</button>
-        <button type="button" class="quick-pill" data-value="50000" onclick="pickPill(this)">$50,000</button>
-        <button type="button" class="quick-pill quick-pill-custom" data-value="custom" onclick="pickCustom(this)">Other</button>
-      </div>
-      <div class="dollar-input-wrap">
-        <span class="dollar-prefix">$</span>
-        <input type="text" id="medFuture" inputmode="numeric" placeholder="Enter exact amount" value="0" autocomplete="off">
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 4. LOST INCOME ==================== -->
-  <section class="calc-section" id="sec-income">
-    <div class="section-header"><div class="section-number">4</div><h2 class="section-heading">Lost Income Compensation</h2></div>
-    <p class="section-subheading">Enter your earnings and time missed from work due to the injury.</p>
-
-    <div class="field-group">
-      <label class="field-label">
-        Weekly gross income (before taxes)
-        <span class="field-tooltip" tabindex="0">?<span class="tip-text">If salaried, divide annual salary by 52. If self-employed, use average weekly profit. If unemployed or retired, pick $0.</span></span>
+      <label class="field-label" for="medFuture">
+        Estimated future medical costs
+        <span class="field-tooltip" tabindex="0">?<span class="tip-text">If your doctor has mentioned future surgery, ongoing PT, injections, or long-term medication — estimate that here. Unsure? Leave at $0 and note it in the attorney review.</span></span>
       </label>
-      <div class="quick-pills" data-input="weeklyIncome">
-        <button type="button" class="quick-pill" data-value="0" onclick="pickPill(this)">$0</button>
-        <button type="button" class="quick-pill" data-value="500" onclick="pickPill(this)">$500</button>
-        <button type="button" class="quick-pill" data-value="1000" onclick="pickPill(this)">$1,000</button>
-        <button type="button" class="quick-pill" data-value="1500" onclick="pickPill(this)">$1,500</button>
-        <button type="button" class="quick-pill" data-value="2500" onclick="pickPill(this)">$2,500</button>
-        <button type="button" class="quick-pill quick-pill-custom" data-value="custom" onclick="pickCustom(this)">Other</button>
-      </div>
       <div class="dollar-input-wrap">
         <span class="dollar-prefix">$</span>
-        <input type="text" id="weeklyIncome" inputmode="numeric" placeholder="Enter exact amount" autocomplete="off">
+        <input type="text" id="medFuture" inputmode="numeric" placeholder="0" value="0" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn btn-back" onclick="prevStep(3)">&larr; Back</button>
+      <button class="btn btn-next" onclick="nextStep(3)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 4: LOST INCOME ==================== -->
+  <div class="step-card" id="step4">
+    <h2 class="step-heading">How has this affected your income?</h2>
+    <p class="step-subheading">Enter your earnings and time missed from work due to the injury.</p>
+
+    <div class="field-group">
+      <label class="field-label" for="weeklyIncome">
+        Your weekly gross income (before taxes)
+        <span class="field-tooltip" tabindex="0">?<span class="tip-text">If salaried, divide annual salary by 52. If self-employed, use average weekly profit. If unemployed or retired, enter $0.</span></span>
+      </label>
+      <div class="dollar-input-wrap">
+        <span class="dollar-prefix">$</span>
+        <input type="text" id="weeklyIncome" inputmode="numeric" placeholder="0" autocomplete="off">
       </div>
     </div>
 
     <div class="field-group">
-      <label class="field-label">
-        Weeks of work missed
+      <label class="field-label" for="weeksMissed">
+        Weeks of work missed so far
         <span class="field-tooltip" tabindex="0">?<span class="tip-text">Count all time you couldn't work due to injury, including partial weeks and medical appointments during work hours.</span></span>
       </label>
-      <div class="quick-pills" data-input="weeksMissed">
-        <button type="button" class="quick-pill" data-value="0" onclick="pickPill(this)">None</button>
-        <button type="button" class="quick-pill" data-value="1" onclick="pickPill(this)">1 week</button>
-        <button type="button" class="quick-pill" data-value="2" onclick="pickPill(this)">2 weeks</button>
-        <button type="button" class="quick-pill" data-value="4" onclick="pickPill(this)">1 month</button>
-        <button type="button" class="quick-pill" data-value="8" onclick="pickPill(this)">2 months</button>
-        <button type="button" class="quick-pill" data-value="16" onclick="pickPill(this)">4 months</button>
-        <button type="button" class="quick-pill" data-value="26" onclick="pickPill(this)">6+ months</button>
-        <button type="button" class="quick-pill quick-pill-custom" data-value="custom" onclick="pickCustom(this)">Other</button>
-      </div>
-      <input type="number" id="weeksMissed" min="0" placeholder="Enter exact weeks" autocomplete="off">
+      <input type="number" id="weeksMissed" min="0" placeholder="0" autocomplete="off">
     </div>
 
     <div class="field-group">
@@ -1081,34 +1378,31 @@ input[type="range"]::-moz-range-thumb {
           <label class="checkbox-row">
             <input type="checkbox" id="permanentImpact" onchange="handlePermanent()">
             Or this is a permanent / long-term impact
-            <span class="field-tooltip" tabindex="0">?<span class="tip-text">If checked, we'll estimate 2 years (104 weeks) of lost income as a baseline. Your attorney can refine this.</span></span>
+            <span class="field-tooltip" tabindex="0">?<span class="tip-text">If checked, we'll estimate 2 years (104 weeks) of lost income as a baseline. Your attorney can refine this based on your specific circumstances.</span></span>
           </label>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== 5. PROPERTY DAMAGE ==================== -->
-  <section class="calc-section" id="sec-property">
-    <div class="section-header"><div class="section-number">5</div><h2 class="section-heading">What property was damaged?</h2></div>
-    <p class="section-subheading">Include vehicle damage and any personal belongings.</p>
+    <div class="step-nav">
+      <button class="btn btn-back" onclick="prevStep(4)">&larr; Back</button>
+      <button class="btn btn-next" onclick="nextStep(4)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 5: PROPERTY DAMAGE ==================== -->
+  <div class="step-card" id="step5">
+    <h2 class="step-heading">What property was damaged?</h2>
+    <p class="step-subheading">Include vehicle damage and any personal belongings.</p>
 
     <div class="field-group">
-      <label class="field-label">
+      <label class="field-label" for="vehicleDmg">
         Vehicle repair or replacement value
         <span class="field-tooltip" tabindex="0">?<span class="tip-text">Use your body shop estimate if you have one. If your car was totaled, use the pre-accident market value.</span></span>
       </label>
-      <div class="quick-pills" data-input="vehicleDmg">
-        <button type="button" class="quick-pill selected" data-value="0" onclick="pickPill(this)">No vehicle</button>
-        <button type="button" class="quick-pill" data-value="2000" onclick="pickPill(this)">$2,000</button>
-        <button type="button" class="quick-pill" data-value="8000" onclick="pickPill(this)">$8,000</button>
-        <button type="button" class="quick-pill" data-value="15000" onclick="pickPill(this)">$15,000</button>
-        <button type="button" class="quick-pill" data-value="30000" onclick="pickPill(this)">$30,000</button>
-        <button type="button" class="quick-pill quick-pill-custom" data-value="custom" onclick="pickCustom(this)">Other</button>
-      </div>
       <div class="dollar-input-wrap">
         <span class="dollar-prefix">$</span>
-        <input type="text" id="vehicleDmg" inputmode="numeric" placeholder="Enter exact amount" value="0" autocomplete="off">
+        <input type="text" id="vehicleDmg" inputmode="numeric" placeholder="0" value="0" autocomplete="off">
       </div>
       <div class="range-toggle" onclick="toggleRange(this)">
         Not sure? See common ranges
@@ -1130,76 +1424,85 @@ input[type="range"]::-moz-range-thumb {
     </div>
 
     <div class="field-group">
-      <label class="field-label">Non-vehicle property damages</label>
-      <div class="quick-pills" data-input="otherDmg">
-        <button type="button" class="quick-pill selected" data-value="0" onclick="pickPill(this)">$0</button>
-        <button type="button" class="quick-pill" data-value="500" onclick="pickPill(this)">$500</button>
-        <button type="button" class="quick-pill" data-value="1500" onclick="pickPill(this)">$1,500</button>
-        <button type="button" class="quick-pill" data-value="3000" onclick="pickPill(this)">$3,000</button>
-        <button type="button" class="quick-pill quick-pill-custom" data-value="custom" onclick="pickCustom(this)">Other</button>
-      </div>
+      <label class="field-label" for="otherDmg">
+        Other property damage
+        <span class="field-tooltip" tabindex="0">?<span class="tip-text">Phone, laptop, or other belongings damaged in the accident.</span></span>
+      </label>
       <div class="dollar-input-wrap">
         <span class="dollar-prefix">$</span>
-        <input type="text" id="otherDmg" inputmode="numeric" placeholder="Enter exact amount" value="0" autocomplete="off">
-      </div>
-      <p style="font-size:12px; color:var(--gray-400); margin-top:6px; line-height:1.5;">Phone, laptop, glasses, clothing, child car seats, bike, work tools or equipment, luggage</p>
-    </div>
-  </section>
-
-  <!-- ==================== 6. INJURY SEVERITY ==================== -->
-  <section class="calc-section" id="sec-severity">
-    <div class="section-header"><div class="section-number">6</div><h2 class="section-heading">How would you describe your injury?</h2></div>
-    <p class="section-subheading">This determines your pain &amp; suffering multiplier — choose the description that best fits.</p>
-
-    <div class="severity-grid">
-      <div class="severity-card" data-severity="minor" data-mult="1.5" onclick="selectSeverity(this)">
-        <div class="severity-header">
-          <span class="severity-label">Minor</span>
-          <span class="severity-mult">1.5&times;</span>
-        </div>
-        <p class="severity-desc">Soft tissue injuries, whiplash, bruising, or sprains. Largely recovered or expect full recovery within weeks.</p>
-      </div>
-      <div class="severity-card" data-severity="moderate" data-mult="2.5" onclick="selectSeverity(this)">
-        <div class="severity-header">
-          <span class="severity-label">Moderate</span>
-          <span class="severity-mult">2.5&times;</span>
-        </div>
-        <p class="severity-desc">Broken bones, herniated discs, concussion. Several months of PT or ongoing care. Noticeable impact on daily life.</p>
-      </div>
-      <div class="severity-card" data-severity="serious" data-mult="3.5" onclick="selectSeverity(this)">
-        <div class="severity-header">
-          <span class="severity-label">Serious</span>
-          <span class="severity-mult">3.5&times;</span>
-        </div>
-        <p class="severity-desc">Surgery required or recommended. Significant ongoing pain. 6+ month recovery. Some permanent effects possible.</p>
-      </div>
-      <div class="severity-card" data-severity="severe" data-mult="4.5" onclick="selectSeverity(this)">
-        <div class="severity-header">
-          <span class="severity-label">Severe</span>
-          <span class="severity-mult">4.5&times;</span>
-        </div>
-        <p class="severity-desc">Permanent partial impairment. Major long-term disability. Disfigurement or scarring. Permanently affected ability to work.</p>
-      </div>
-      <div class="severity-card" data-severity="catastrophic" data-mult="5" onclick="selectSeverity(this)">
-        <div class="severity-header">
-          <span class="severity-label">Catastrophic</span>
-          <span class="severity-mult">5&times;</span>
-        </div>
-        <p class="severity-desc">TBI, spinal cord damage, paralysis, amputation, or total permanent disability. Life has fundamentally changed.</p>
+        <input type="text" id="otherDmg" inputmode="numeric" placeholder="0" value="0" autocomplete="off">
       </div>
     </div>
-    <div id="err-severity" class="field-error" style="margin-top:12px">Please select an injury severity level.</div>
-  </section>
 
-  <!-- ==================== 7. FAULT (MVA only) ==================== -->
-  <section class="calc-section" id="sec-fault" style="display:none;">
-    <div class="section-header"><div class="section-number">7</div><h2 class="section-heading">What percentage of fault do you share?</h2></div>
-    <p class="section-subheading">Be honest — Texas law considers your share of fault in calculating your recovery.</p>
+    <div class="step-nav">
+      <button class="btn btn-back" onclick="prevStep(5)">&larr; Back</button>
+      <button class="btn btn-next" onclick="nextStep(5)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 6: INJURY SEVERITY ==================== -->
+  <div class="step-card" id="step6">
+    <h2 class="step-heading">How would you describe your injury?</h2>
+    <p class="step-subheading">This determines your pain &amp; suffering multiplier — choose the description that best fits your situation.</p>
+
+    <div class="severity-card" data-severity="minor" data-mult="1.5" onclick="selectSeverity(this)">
+      <div class="severity-header">
+        <span class="severity-label">Minor</span>
+        <span class="severity-mult">1.5&times; multiplier</span>
+      </div>
+      <p class="severity-desc">Soft tissue injuries, whiplash, bruising, or sprains. You have largely recovered or expect to fully recover within weeks. Minimal ongoing treatment needed.</p>
+    </div>
+
+    <div class="severity-card" data-severity="moderate" data-mult="2.5" onclick="selectSeverity(this)">
+      <div class="severity-header">
+        <span class="severity-label">Moderate</span>
+        <span class="severity-mult">2.5&times; multiplier</span>
+      </div>
+      <p class="severity-desc">Broken bones, herniated discs, concussion, or injuries requiring several months of physical therapy or ongoing care. Noticeable impact on daily life.</p>
+    </div>
+
+    <div class="severity-card" data-severity="serious" data-mult="3.5" onclick="selectSeverity(this)">
+      <div class="severity-header">
+        <span class="severity-label">Serious</span>
+        <span class="severity-mult">3.5&times; multiplier</span>
+      </div>
+      <p class="severity-desc">Surgery was required or is recommended. Significant ongoing pain. Expected recovery is 6+ months. Some permanent effects possible.</p>
+    </div>
+
+    <div class="severity-card" data-severity="severe" data-mult="4.5" onclick="selectSeverity(this)">
+      <div class="severity-header">
+        <span class="severity-label">Severe</span>
+        <span class="severity-mult">4.5&times; multiplier</span>
+      </div>
+      <p class="severity-desc">Permanent partial impairment. Major long-term disability. Disfigurement or scarring. Your ability to work or live normally is permanently affected.</p>
+    </div>
+
+    <div class="severity-card" data-severity="catastrophic" data-mult="5" onclick="selectSeverity(this)">
+      <div class="severity-header">
+        <span class="severity-label">Catastrophic</span>
+        <span class="severity-mult">5&times; multiplier</span>
+      </div>
+      <p class="severity-desc">Traumatic brain injury (TBI), spinal cord damage, paralysis, amputation, or other injury causing total permanent disability. Life has fundamentally changed.</p>
+    </div>
+
+    <div id="step6Error" class="field-error" style="margin-top:12px">Please select an injury severity level.</div>
+
+    <div class="step-nav">
+      <button class="btn btn-back" onclick="prevStep(6)">&larr; Back</button>
+      <button class="btn btn-next" onclick="nextStep(6)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 7: FAULT ==================== -->
+  <div class="step-card" id="step7">
+    <h2 class="step-heading">What percentage of fault do you believe you share?</h2>
+    <p class="step-subheading">Be honest — Texas law considers your share of fault in calculating your recovery.</p>
 
     <div class="fault-display">
       <div class="fault-pct" id="faultPct">0%</div>
       <div class="fault-pct-label">your estimated fault</div>
     </div>
+
     <div class="fault-slider-wrap">
       <input type="range" id="faultSlider" min="0" max="60" step="5" value="0" oninput="updateFault()">
       <div class="fault-labels">
@@ -1210,27 +1513,30 @@ input[type="range"]::-moz-range-thumb {
         <span>60%</span>
       </div>
     </div>
+
     <div class="fault-feedback level-low" id="faultFeedback">
       Good news — minimal fault means maximum recovery under Texas law.
     </div>
-  </section>
 
-  <!-- CALCULATE BUTTON -->
-  <div class="calculate-wrap">
-    <button class="btn-calculate" id="calcBtn" onclick="calculate()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg>
-      Calculate My Estimate
-    </button>
+    <div class="step-nav">
+      <button class="btn btn-back" onclick="prevStep(7)">&larr; Back</button>
+      <button class="btn btn-next" id="faultNextBtn" onclick="showResults()">See My Results &rarr;</button>
+    </div>
   </div>
 
   <!-- ==================== RESULTS ==================== -->
   <div class="results-section" id="resultsSection">
-    <div class="results-divider"></div>
 
+    <!-- Hero amount (or bar-rule zero) -->
     <div id="resultHero"></div>
+
+    <!-- Alerts (SOL warning, med-mal note) -->
     <div id="resultAlerts"></div>
+
+    <!-- Breakdown table -->
     <div id="resultBreakdown"></div>
 
+    <!-- Disclaimer -->
     <div id="resultDisclaimer" class="result-breakdown">
       <p class="disclaimer-text">This estimate is for informational purposes only and does not constitute legal advice. Actual recovery depends on evidence, insurance policy limits, negotiation, and Texas court outcomes. This calculator does not create an attorney-client relationship.</p>
     </div>
@@ -1278,13 +1584,15 @@ input[type="range"]::-moz-range-thumb {
       </div>
     </div>
 
-    <div class="recalc-wrap">
-      <button class="btn-recalc" onclick="recalc()">&#x21BB; Adjust &amp; Recalculate</button>
+    <!-- Start over -->
+    <div class="start-over-wrap">
+      <button class="btn-start-over" onclick="startOver()">&#x21BB; Start Over</button>
     </div>
   </div>
 
 </main>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <div style="display:flex; justify-content:center; gap:16px; margin-bottom:8px; flex-wrap:wrap; font-size:12px;">
     <a href="/average-car-accident-settlement-texas" style="color:#9BA3B5; text-decoration:none;">Average Settlement</a>
@@ -1306,16 +1614,24 @@ input[type="range"]::-moz-range-thumb {
    STATE
    ============================================================== */
 const state = {
+  step: 1,
   accidentType: null,
   medMal: false,
   accMonth: null,
   accYear: null,
   monthsSince: 0,
   solWarning: false,
+  medBills: 0,
+  medFuture: 0,
+  weeklyIncome: 0,
+  weeksMissed: 0,
+  futureIncome: false,
+  futureWeeks: 0,
+  permanent: false,
+  vehicleDmg: 0,
+  otherDmg: 0,
   multiplier: 0,
   severity: null,
-  futureIncome: false,
-  permanent: false,
   fault: 0
 };
 
@@ -1323,8 +1639,10 @@ const state = {
    INIT
    ============================================================== */
 (function init() {
+  // Populate year dropdown (current year back 10 years)
   const yearSel = document.getElementById('accYear');
-  const curYear = new Date().getFullYear();
+  const now = new Date();
+  const curYear = now.getFullYear();
   for (let y = curYear; y >= curYear - 10; y--) {
     const opt = document.createElement('option');
     opt.value = y;
@@ -1332,21 +1650,13 @@ const state = {
     yearSel.appendChild(opt);
   }
 
-  // Dollar formatting + pill sync
+  // Wire up dollar formatting
   ['medBills', 'medFuture', 'weeklyIncome', 'vehicleDmg', 'otherDmg'].forEach(id => {
     const el = document.getElementById(id);
-    el.addEventListener('input', function() {
-      formatDollar(this);
-      syncPillsFromInput(this);
-    });
+    el.addEventListener('input', function() { formatDollar(this); });
     el.addEventListener('focus', function() { if (this.value === '0') this.value = ''; });
     el.addEventListener('blur', function() { if (this.value === '') this.value = '0'; });
   });
-
-  // Weeks missed — also sync pills on manual typing
-  const weeksMissedEl = document.getElementById('weeksMissed');
-  weeksMissedEl.addEventListener('input', function() { syncPillsFromInput(this); });
-
 })();
 
 /* ==============================================================
@@ -1364,171 +1674,54 @@ function parseDollar(id) {
 }
 
 /* ==============================================================
-   SELECTIONS
+   STEP 1: ACCIDENT TYPE
    ============================================================== */
 function selectType(card) {
   document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
   state.accidentType = card.dataset.type;
   state.medMal = card.dataset.type === 'med_mal';
-  clearError('err-type');
-
-  // Show fault section only for motor vehicle accidents
-  const isMVA = ['car_truck', 'motorcycle'].includes(card.dataset.type);
-  const faultSec = document.getElementById('sec-fault');
-  faultSec.style.display = isMVA ? '' : 'none';
-  if (!isMVA) {
-    state.fault = 0;
-    document.getElementById('faultSlider').value = 0;
-    updateFault();
-  }
-
-  // Auto-advance to next section
-  setTimeout(() => {
-    document.getElementById('sec-date').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 300);
+  document.getElementById('step1Error').classList.remove('visible');
 }
 
+/* ==============================================================
+   STEP 6: SEVERITY
+   ============================================================== */
 function selectSeverity(card) {
   document.querySelectorAll('.severity-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
   state.severity = card.dataset.severity;
   state.multiplier = parseFloat(card.dataset.mult);
-  clearError('err-severity');
-  // Auto-advance to fault section
-  setTimeout(() => {
-    document.getElementById('sec-fault').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 300);
-}
-
-function clearError(id) {
-  document.getElementById(id).classList.remove('visible');
+  document.getElementById('step6Error').classList.remove('visible');
 }
 
 /* ==============================================================
-   QUICK-SELECT PILLS
-   ============================================================== */
-function pickPill(btn) {
-  const wrap = btn.closest('.quick-pills');
-  const inputId = wrap.dataset.input;
-  const input = document.getElementById(inputId);
-  const val = btn.dataset.value;
-
-  // Deselect siblings, select this one
-  wrap.querySelectorAll('.quick-pill').forEach(p => p.classList.remove('selected'));
-  btn.classList.add('selected');
-
-  // Set the input value
-  input.value = Number(val).toLocaleString('en-US');
-
-  // Clear any error on this field
-  input.classList.remove('error');
-  if (inputId === 'medBills') clearError('err-medbills');
-
-  // Auto-advance: find the next field group or next section
-  advanceFromPill(btn);
-}
-
-function advanceFromPill(btn) {
-  // Find current field-group, then the next sibling field-group within same section
-  const fieldGroup = btn.closest('.field-group');
-  const section = btn.closest('.calc-section');
-  if (!fieldGroup || !section) return;
-
-  const groups = Array.from(section.querySelectorAll('.field-group'));
-  const idx = groups.indexOf(fieldGroup);
-
-  // If there's another field group in this section, scroll to it
-  if (idx >= 0 && idx < groups.length - 1) {
-    setTimeout(() => {
-      groups[idx + 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 250);
-    return;
-  }
-
-  // Otherwise, advance to the next visible section
-  const sections = Array.from(document.querySelectorAll('.calc-section'));
-  const secIdx = sections.indexOf(section);
-  for (let i = secIdx + 1; i < sections.length; i++) {
-    if (sections[i].style.display !== 'none') {
-      setTimeout(() => {
-        sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 250);
-      return;
-    }
-  }
-
-  // If no more sections, scroll to calculate button
-  setTimeout(() => {
-    document.querySelector('.calculate-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 250);
-}
-
-function pickCustom(btn) {
-  const wrap = btn.closest('.quick-pills');
-  const inputId = wrap.dataset.input;
-  const input = document.getElementById(inputId);
-
-  // Deselect siblings, select "Other"
-  wrap.querySelectorAll('.quick-pill').forEach(p => p.classList.remove('selected'));
-  btn.classList.add('selected');
-
-  // Clear and focus the input for manual entry
-  input.value = '';
-  input.focus();
-}
-
-function syncPillsFromInput(input) {
-  // Find the pill group for this input
-  const wrap = document.querySelector(`.quick-pills[data-input="${input.id}"]`);
-  if (!wrap) return;
-
-  const rawVal = input.value.replace(/[^0-9]/g, '');
-  const numVal = rawVal ? parseInt(rawVal, 10) : 0;
-
-  // Check if typed value matches any preset pill
-  let matched = false;
-  wrap.querySelectorAll('.quick-pill:not(.quick-pill-custom)').forEach(p => {
-    if (parseInt(p.dataset.value, 10) === numVal) {
-      wrap.querySelectorAll('.quick-pill').forEach(pp => pp.classList.remove('selected'));
-      p.classList.add('selected');
-      matched = true;
-    }
-  });
-
-  // If no match, select "Other"
-  if (!matched) {
-    wrap.querySelectorAll('.quick-pill').forEach(pp => pp.classList.remove('selected'));
-    const customPill = wrap.querySelector('.quick-pill-custom');
-    if (customPill) customPill.classList.add('selected');
-  }
-}
-
-/* ==============================================================
-   TOGGLES
+   STEP 4: FUTURE INCOME TOGGLE
    ============================================================== */
 function toggleFutureIncome(btn, show) {
-  btn.parentElement.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  const btns = btn.parentElement.querySelectorAll('.toggle-btn');
+  btns.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   state.futureIncome = show;
-  document.getElementById('futureIncomeFields').classList.toggle('open', show);
+  const panel = document.getElementById('futureIncomeFields');
+  if (show) { panel.classList.add('open'); }
+  else { panel.classList.remove('open'); }
 }
 
 function handlePermanent() {
   const cb = document.getElementById('permanentImpact');
   state.permanent = cb.checked;
-  const w = document.getElementById('futureWeeks');
-  if (cb.checked) { w.value = 104; w.disabled = true; }
-  else { w.disabled = false; }
-}
-
-function toggleRange(el) {
-  el.classList.toggle('open');
-  el.nextElementSibling.classList.toggle('open');
+  const weeksInput = document.getElementById('futureWeeks');
+  if (cb.checked) {
+    weeksInput.value = 104;
+    weeksInput.disabled = true;
+  } else {
+    weeksInput.disabled = false;
+  }
 }
 
 /* ==============================================================
-   FAULT SLIDER
+   STEP 7: FAULT SLIDER
    ============================================================== */
 function updateFault() {
   const v = parseInt(document.getElementById('faultSlider').value);
@@ -1536,16 +1729,18 @@ function updateFault() {
   const pctEl = document.getElementById('faultPct');
   pctEl.textContent = v + '%';
 
+  // Color the percentage
   if (v >= 51) pctEl.style.color = 'var(--red)';
   else if (v >= 31) pctEl.style.color = 'var(--orange)';
   else if (v >= 11) pctEl.style.color = 'var(--amber-dark)';
   else pctEl.style.color = 'var(--navy)';
 
+  // Feedback card
   const fb = document.getElementById('faultFeedback');
   fb.className = 'fault-feedback';
   if (v <= 10) {
     fb.classList.add('level-low');
-    fb.textContent = 'Good news \u2014 minimal fault means maximum recovery under Texas law.';
+    fb.textContent = 'Good news — minimal fault means maximum recovery under Texas law.';
   } else if (v <= 30) {
     fb.classList.add('level-mid');
     fb.textContent = 'Your recovery will be reduced by your fault percentage, but you can still recover.';
@@ -1554,95 +1749,143 @@ function updateFault() {
     fb.textContent = 'Significant fault reduction. An attorney can help argue for a lower fault assignment.';
   } else {
     fb.classList.add('level-bar');
-    fb.innerHTML = '\u26A0\uFE0F <strong>Texas 51% Bar Rule:</strong> Under Texas Civil Practice &amp; Remedies Code \u00A733.001, if you are 51% or more at fault, you cannot recover any damages. Consider consulting an attorney before assuming full fault.';
+    fb.innerHTML = '\u26A0\uFE0F <strong>Texas 51% Bar Rule:</strong> Under Texas Civil Practice &amp; Remedies Code \u00A733.001, if you are determined to be 51% or more at fault, you cannot recover any damages from the other party. Consider consulting an attorney before assuming full fault.';
   }
 
-  // Update button text
-  const btn = document.getElementById('calcBtn');
+  // Button text
+  const btn = document.getElementById('faultNextBtn');
   if (v >= 51) {
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg> Calculate Anyway';
-    btn.style.background = 'var(--red)';
-    btn.style.color = 'var(--white)';
-    btn.style.boxShadow = '0 4px 20px rgba(239,68,68,0.25)';
+    btn.textContent = 'See My Results Anyway →';
+    btn.classList.add('warning-btn');
   } else {
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg> Calculate My Estimate';
-    btn.style.background = '';
-    btn.style.color = '';
-    btn.style.boxShadow = '';
+    btn.textContent = 'See My Results →';
+    btn.classList.remove('warning-btn');
   }
 }
 
 /* ==============================================================
-   VALIDATE & CALCULATE
+   RANGE TOGGLE
    ============================================================== */
-function validate() {
-  let firstError = null;
+function toggleRange(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
 
-  // Type
-  if (!state.accidentType) {
-    document.getElementById('err-type').classList.add('visible');
-    if (!firstError) firstError = document.getElementById('sec-type');
-  }
+/* ==============================================================
+   VALIDATION & NAVIGATION
+   ============================================================== */
+function validate(step) {
+  switch (step) {
+    case 1:
+      if (!state.accidentType) {
+        document.getElementById('step1Error').classList.add('visible');
+        document.querySelector('.type-grid').classList.add('shake');
+        setTimeout(() => document.querySelector('.type-grid').classList.remove('shake'), 400);
+        return false;
+      }
+      return true;
 
-  // Date
-  const m = document.getElementById('accMonth').value;
-  const y = document.getElementById('accYear').value;
-  if (!m || !y) {
-    document.getElementById('err-date').classList.add('visible');
-    if (!firstError) firstError = document.getElementById('sec-date');
-  } else {
-    document.getElementById('err-date').classList.remove('visible');
-    state.accMonth = parseInt(m);
-    state.accYear = parseInt(y);
-    const now = new Date();
-    state.monthsSince = (now.getFullYear() - state.accYear) * 12 + (now.getMonth() + 1 - state.accMonth);
-    state.solWarning = state.monthsSince >= 22;
-  }
+    case 2:
+      const m = document.getElementById('accMonth').value;
+      const y = document.getElementById('accYear').value;
+      if (!m || !y) {
+        document.getElementById('step2Error').classList.add('visible');
+        return false;
+      }
+      document.getElementById('step2Error').classList.remove('visible');
+      state.accMonth = parseInt(m);
+      state.accYear = parseInt(y);
+      // Calculate months since
+      const now = new Date();
+      state.monthsSince = (now.getFullYear() - state.accYear) * 12 + (now.getMonth() + 1 - state.accMonth);
+      state.solWarning = state.monthsSince >= 22;
+      return true;
 
-  // Medical bills
-  const bills = parseDollar('medBills');
-  if (bills <= 0) {
-    document.getElementById('err-medbills').classList.add('visible');
-    document.getElementById('medBills').classList.add('error');
-    if (!firstError) firstError = document.getElementById('sec-medical');
-  } else {
-    document.getElementById('err-medbills').classList.remove('visible');
-    document.getElementById('medBills').classList.remove('error');
-  }
+    case 3:
+      const bills = parseDollar('medBills');
+      if (bills <= 0) {
+        document.getElementById('medBillsError').classList.add('visible');
+        document.getElementById('medBills').classList.add('error', 'shake');
+        setTimeout(() => document.getElementById('medBills').classList.remove('shake'), 400);
+        return false;
+      }
+      document.getElementById('medBillsError').classList.remove('visible');
+      document.getElementById('medBills').classList.remove('error');
+      state.medBills = bills;
+      state.medFuture = parseDollar('medFuture');
+      return true;
 
-  // Severity
-  if (!state.severity) {
-    document.getElementById('err-severity').classList.add('visible');
-    if (!firstError) firstError = document.getElementById('sec-severity');
-  }
+    case 4:
+      state.weeklyIncome = parseDollar('weeklyIncome');
+      state.weeksMissed = parseInt(document.getElementById('weeksMissed').value) || 0;
+      if (state.futureIncome) {
+        state.futureWeeks = state.permanent ? 104 : (parseInt(document.getElementById('futureWeeks').value) || 0);
+      } else {
+        state.futureWeeks = 0;
+      }
+      return true;
 
-  if (firstError) {
-    firstError.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    firstError.classList.add('shake');
-    setTimeout(() => firstError.classList.remove('shake'), 400);
-    return false;
+    case 5:
+      state.vehicleDmg = parseDollar('vehicleDmg');
+      state.otherDmg = parseDollar('otherDmg');
+      return true;
+
+    case 6:
+      if (!state.severity) {
+        document.getElementById('step6Error').classList.add('visible');
+        return false;
+      }
+      return true;
+
+    case 7:
+      return true;
   }
   return true;
 }
 
-function calculate() {
-  if (!validate()) return;
+function nextStep(from) {
+  if (!validate(from)) return;
+  goToStep(from + 1);
+}
 
-  // Gather remaining values
-  const medBills = parseDollar('medBills');
-  const medFuture = parseDollar('medFuture');
-  const weeklyIncome = parseDollar('weeklyIncome');
-  const weeksMissed = parseInt(document.getElementById('weeksMissed').value) || 0;
-  let futureWeeks = 0;
-  if (state.futureIncome) {
-    futureWeeks = state.permanent ? 104 : (parseInt(document.getElementById('futureWeeks').value) || 0);
+function prevStep(from) {
+  goToStep(from - 1);
+}
+
+function goToStep(n) {
+  // Hide all steps
+  document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+  // Show target step
+  const target = document.getElementById('step' + n);
+  if (target) {
+    target.classList.add('active');
+    state.step = n;
   }
-  const vehicleDmg = parseDollar('vehicleDmg');
-  const otherDmg = parseDollar('otherDmg');
+  // Update progress
+  document.querySelectorAll('.progress-step').forEach(s => {
+    const sn = parseInt(s.dataset.step);
+    s.classList.remove('active', 'completed');
+    if (sn < n) s.classList.add('completed');
+    if (sn === n) s.classList.add('active');
+  });
+  // Scroll to top of card
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-  const pastLostWages = weeklyIncome * weeksMissed;
-  const futureLostIncome = weeklyIncome * futureWeeks;
-  const economic = medBills + medFuture + pastLostWages + futureLostIncome + vehicleDmg + otherDmg;
+/* ==============================================================
+   RESULTS
+   ============================================================== */
+function showResults() {
+  if (!validate(7)) return;
+
+  // Hide wizard steps and progress
+  document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('progressWrap').style.display = 'none';
+
+  // Calculate
+  const pastLostWages = state.weeklyIncome * state.weeksMissed;
+  const futureLostIncome = state.weeklyIncome * state.futureWeeks;
+  const economic = state.medBills + state.medFuture + pastLostWages + futureLostIncome + state.vehicleDmg + state.otherDmg;
   const painSuffering = economic * state.multiplier;
   const gross = economic + painSuffering;
 
@@ -1659,7 +1902,7 @@ function calculate() {
   const attorneyFee = recovery * 0.33;
   const netToYou = recovery - attorneyFee;
 
-  // Hidden form fields
+  // Set hidden form fields
   document.getElementById('hiddenType').value = state.accidentType;
   document.getElementById('hiddenRecovery').value = '$' + Math.round(recovery).toLocaleString('en-US');
 
@@ -1667,6 +1910,7 @@ function calculate() {
   const alertsEl = document.getElementById('resultAlerts');
   const breakdownEl = document.getElementById('resultBreakdown');
 
+  // Build hero
   if (showBarRule) {
     heroEl.innerHTML = `
       <div class="bar-rule-card">
@@ -1684,15 +1928,16 @@ function calculate() {
         <div class="result-hero-net">Estimated net after attorney fees: <span>$${Math.round(netToYou).toLocaleString('en-US')}</span></div>
       </div>`;
 
+    // Breakdown
     breakdownEl.innerHTML = `
       <div class="result-breakdown">
         <h3 class="breakdown-title">Estimate Breakdown</h3>
-        ${bRow('Medical Bills (Past)', medBills)}
-        ${medFuture > 0 ? bRow('Medical Bills (Future)', medFuture) : ''}
+        ${bRow('Medical Bills (Past)', state.medBills)}
+        ${state.medFuture > 0 ? bRow('Medical Bills (Future)', state.medFuture) : ''}
         ${pastLostWages > 0 ? bRow('Lost Wages (Past)', pastLostWages) : ''}
         ${futureLostIncome > 0 ? bRow('Lost Income (Future)', futureLostIncome) : ''}
-        ${vehicleDmg > 0 ? bRow('Vehicle Damage', vehicleDmg) : ''}
-        ${otherDmg > 0 ? bRow('Non-Vehicle Property', otherDmg) : ''}
+        ${state.vehicleDmg > 0 ? bRow('Vehicle Damage', state.vehicleDmg) : ''}
+        ${state.otherDmg > 0 ? bRow('Other Property Damage', state.otherDmg) : ''}
         <div class="breakdown-row subtotal">
           <span>Economic Damages</span>
           <span class="breakdown-val">${fmtMoney(economic)}</span>
@@ -1723,11 +1968,8 @@ function calculate() {
         </div>
       </div>`;
 
-    // Count-up
-    setTimeout(() => {
-      const el = document.getElementById('countUpAmount');
-      if (el) animateCountUp(el, Math.round(recovery), 1500);
-    }, 300);
+    // Count-up animation
+    animateCountUp(document.getElementById('countUpAmount'), Math.round(recovery), 1500);
   }
 
   // Alerts
@@ -1741,17 +1983,14 @@ function calculate() {
   if (state.medMal) {
     alertsHTML += `<div class="alert-box alert-blue">
       <strong>Medical Malpractice Note</strong>
-      Texas law caps non-economic damages in medical malpractice cases at $250,000 per defendant (Texas Civil Practice &amp; Remedies Code &sect;74.301). Your actual pain &amp; suffering recovery may be lower than estimated above.
+      Texas law caps non-economic damages in medical malpractice cases at $250,000 per defendant (Texas Civil Practice &amp; Remedies Code &sect;74.301). Your actual recovery for pain &amp; suffering may be lower than estimated above.
     </div>`;
   }
   alertsEl.innerHTML = alertsHTML;
 
-  // Show & scroll
-  const resultsEl = document.getElementById('resultsSection');
-  resultsEl.classList.add('active');
-  setTimeout(() => {
-    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
+  // Show results
+  document.getElementById('resultsSection').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function bRow(label, amount) {
@@ -1763,25 +2002,20 @@ function fmtMoney(n) {
 }
 
 /* ==============================================================
-   COUNT-UP
+   COUNT-UP ANIMATION
    ============================================================== */
 function animateCountUp(el, target, duration) {
   const start = performance.now();
   const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
   function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    el.textContent = '$' + Math.round(ease(progress) * target).toLocaleString('en-US');
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const val = Math.round(ease(progress) * target);
+    el.textContent = '$' + val.toLocaleString('en-US');
     if (progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
-}
-
-/* ==============================================================
-   RECALCULATE
-   ============================================================== */
-function recalc() {
-  document.getElementById('resultsSection').classList.remove('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ==============================================================
@@ -1789,7 +2023,9 @@ function recalc() {
    ============================================================== */
 function handleContact(e) {
   e.preventDefault();
-  const data = new FormData(e.target);
+  const form = e.target;
+  const data = new FormData(form);
+
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -1803,6 +2039,48 @@ function handleContact(e) {
     document.getElementById('contactFormWrap').style.display = 'none';
     document.getElementById('contactSuccess').style.display = 'block';
   });
+}
+
+/* ==============================================================
+   START OVER
+   ============================================================== */
+function startOver() {
+  // Reset state
+  state.step = 1;
+  state.accidentType = null;
+  state.medMal = false;
+  state.severity = null;
+  state.multiplier = 0;
+  state.fault = 0;
+  state.futureIncome = false;
+  state.permanent = false;
+
+  // Reset UI
+  document.querySelectorAll('.type-card, .severity-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('futureIncomeFields').classList.remove('open');
+  document.getElementById('permanentImpact').checked = false;
+  document.getElementById('futureWeeks').disabled = false;
+
+  // Reset inputs
+  ['medBills', 'medFuture', 'vehicleDmg', 'otherDmg'].forEach(id => document.getElementById(id).value = '0');
+  ['weeklyIncome'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('weeksMissed').value = '';
+  document.getElementById('futureWeeks').value = '';
+  document.getElementById('accMonth').value = '';
+  document.getElementById('accYear').value = '';
+  document.getElementById('faultSlider').value = 0;
+  updateFault();
+
+  // Reset form
+  document.getElementById('contactForm').reset();
+  document.getElementById('contactFormWrap').style.display = 'block';
+  document.getElementById('contactSuccess').style.display = 'none';
+
+  // Hide results, show progress + step 1
+  document.getElementById('resultsSection').classList.remove('active');
+  document.getElementById('progressWrap').style.display = 'block';
+  goToStep(1);
 }
 </script>
 <script>
