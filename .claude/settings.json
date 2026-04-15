@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__gsc__gsc_list_properties",
+      "mcp__gsc__gsc_submit_sitemap"
+    ]
+  }
+}
