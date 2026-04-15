@@ -32,21 +32,41 @@
 2. Netlify auto-deploys from main branch
 3. Domain: texasinjurycalculator.com
 
+## Tracking
+
+- **GTM:** GTM-5Z3PJP2W (deferred 1500ms, installed all pages)
+- **GA4:** G-CRLLGGXLX9 (via GTM, generate_lead key event on form submit)
+- **GSC:** sc-domain:texasinjurycalculator.com (verified, sitemap submitted)
+- **Command center:** Added to sites.yaml as texas-injury-calculator
+
 ## SEO Notes
 
-- Target keywords: texas personal injury calculator, texas settlement calculator, texas injury settlement estimate
+- Target keywords: texas personal injury calculator, texas settlement calculator, pain and suffering calculator texas, average car accident settlement texas
 - Every page needs: title tag, meta description, canonical, Open Graph tags
-- Schema markup: WebApplication (calculator), FAQPage (FAQ sections), Organization
-- Sitemap.xml and robots.txt required at root
+- Schema: WebApplication (calculator), FAQPage (4 content pages)
+- Sitemap.xml and robots.txt at root
+- All content pages cross-link to each other and CTA back to calculator
+- GTM deferred for Core Web Vitals performance
 
 ## File Structure
 
 ```
 /
-├── index.html          # Main calculator page
-├── CLAUDE.md           # This file
-├── sitemap.xml
+├── index.html                                          # Single-page calculator (homepage)
+├── average-car-accident-settlement-texas.html          # Guide: settlement amounts
+├── pain-and-suffering-calculator-texas.html             # Guide: P&S calculation
+├── texas-personal-injury-statute-of-limitations.html    # Guide: SOL deadlines
+├── what-to-do-after-car-accident-texas.html             # Guide: post-accident steps
+├── settlement-infographic.html                          # Infographic page
+├── disclaimer.html                                      # Legal: disclaimer
+├── privacy-policy.html                                  # Legal: privacy policy
+├── terms.html                                           # Legal: terms of use
+├── sitemap.xml                                          # 9 URLs
 ├── robots.txt
-├── _redirects          # Netlify redirects
-└── assets/             # Images, favicon, etc.
+├── _redirects                                           # Netlify pretty URLs
+├── favicon.svg                                          # TX logo favicon
+├── CLAUDE.md
+└── _archive/                                            # Not served publicly
+    ├── wizard.html                                      # Old step-by-step calculator
+    └── keyword_report.html                              # Research file
 ```

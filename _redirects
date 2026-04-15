@@ -1,0 +1,12 @@
+# Pretty URLs — strip .html extensions
+/average-car-accident-settlement-texas   /average-car-accident-settlement-texas.html   200
+/pain-and-suffering-calculator-texas     /pain-and-suffering-calculator-texas.html     200
+/texas-personal-injury-statute-of-limitations  /texas-personal-injury-statute-of-limitations.html  200
+/what-to-do-after-car-accident-texas     /what-to-do-after-car-accident-texas.html     200
+/settlement-infographic                  /settlement-infographic.html                  200
+/disclaimer                              /disclaimer.html                              200
+/privacy-policy                          /privacy-policy.html                          200
+/terms                                   /terms.html                                   200
+
+# Block archived files
+/_archive/*    /    404
