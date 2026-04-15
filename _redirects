@@ -1,12 +1,12 @@
-# Pretty URLs — strip .html extensions
-/average-car-accident-settlement-texas   /average-car-accident-settlement-texas.html   200
-/pain-and-suffering-calculator-texas     /pain-and-suffering-calculator-texas.html     200
-/texas-personal-injury-statute-of-limitations  /texas-personal-injury-statute-of-limitations.html  200
-/what-to-do-after-car-accident-texas     /what-to-do-after-car-accident-texas.html     200
-/settlement-infographic                  /settlement-infographic.html                  200
-/disclaimer                              /disclaimer.html                              200
-/privacy-policy                          /privacy-policy.html                          200
-/terms                                   /terms.html                                   200
+# 301 redirect .html versions to clean URLs (prevents GSC duplicate indexing)
+/average-car-accident-settlement-texas.html   /average-car-accident-settlement-texas   301!
+/pain-and-suffering-calculator-texas.html     /pain-and-suffering-calculator-texas     301!
+/texas-personal-injury-statute-of-limitations.html  /texas-personal-injury-statute-of-limitations  301!
+/what-to-do-after-car-accident-texas.html     /what-to-do-after-car-accident-texas     301!
+/settlement-infographic.html                  /settlement-infographic                  301!
+/disclaimer.html                              /disclaimer                              301!
+/privacy-policy.html                          /privacy-policy                          301!
+/terms.html                                   /terms                                   301!
 
 # Block archived files
 /_archive/*    /    404
