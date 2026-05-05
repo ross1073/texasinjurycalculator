@@ -32,6 +32,16 @@
 2. Netlify auto-deploys from main branch
 3. Domain: texasinjurycalculator.com
 
+**"Done" = live on texasinjurycalculator.com, not just pushed to git.** After a Netlify build, verify the change is visible on the production URL before reporting the task complete.
+
+## Memory
+
+For current SEO state, GTM/GA4/GSC config, and outstanding work, see `project_texas_injury_calculator.md` in the global memory index.
+
+## Memory system
+
+The project brief and `docs/status.md` auto-load into context via a SessionStart hook (`.claude/hooks/session-start-load-context.sh`). Status updates are written by the SessionEnd memory-keeper agent (`.claude/agents/memory-keeper.md`) — it folds each session's decisions, closures, and new open items into `docs/status.md` directly. `/audit-brief` is the manual drift check that compares the brief against the codebase and writes a severity-tagged findings file under `docs/audits/`.
+
 ## Tracking
 
 - **GTM:** GTM-5Z3PJP2W (deferred 1500ms, installed all pages)
